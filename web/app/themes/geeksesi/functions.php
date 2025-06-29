@@ -49,7 +49,7 @@ Application::configure()
 |
 */
 
-collect(['setup', 'filters'])
+collect(['setup', 'filters', 'widgets'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
@@ -58,3 +58,6 @@ collect(['setup', 'filters'])
             );
         }
     });
+
+// Include custom icon meta box functionality
+require_once get_template_directory() . '/app/custom-icon-meta.php';

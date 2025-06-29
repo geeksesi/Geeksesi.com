@@ -12,22 +12,20 @@
   <body @php(body_class())>
     @php(wp_body_open())
 
-    <div id="app">
+    <div id="app" class="min-h-screen flex flex-col">
       <a class="sr-only focus:not-sr-only" href="#main">
         {{ __('Skip to content', 'sage') }}
       </a>
 
-      @include('sections.header')
 
-      <main id="main" class="main">
-        @yield('content')
-      </main>
+      <div class="flex flex-1">
+          @include('sections.sidebar')
 
-      @hasSection('sidebar')
-        <aside class="sidebar">
-          @yield('sidebar')
-        </aside>
-      @endif
+        <main id="main" class="main flex-1">
+          @include('sections.header')
+          @yield('content')
+        </main>
+      </div>
 
       @include('sections.footer')
     </div>
